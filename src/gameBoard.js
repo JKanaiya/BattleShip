@@ -3,18 +3,12 @@ const ship = require("./ships");
 const gameBoard = function () {
   let shipCoords = [];
   const ships = [];
-  //   const switchPlayer = function () {
-  //     if (player2) {
-  //       player == player1 ? (player = player2) : (player = player1);
-  //     }
-  //     else
-  //       player == player1 ? (player = player2) : (player = player1);
-  //   };
+  const sunkShips = [];
+  const missedAttacks = [];
   const buildShip = function (center, axis, length) {
     let sw = true;
     const temp = [];
     let ct = 1;
-    const missedAttacks = [];
     const tempShip = ship(length);
     temp.push(center);
     if (axis === "y") {
@@ -68,7 +62,8 @@ const gameBoard = function () {
           ship.hit();
           if (ship.isSunk()) {
             ships.splice(ships.indexOf(ship), 1);
-            // if(ship.length == 0) endGame?
+            ship.getName();
+            sunkShips.push(ship);
           }
         }
       });
@@ -82,10 +77,16 @@ const gameBoard = function () {
     return false;
   };
 
+  const getMissedAttacks = function () {
+    return missedAttacks;
+  };
+
   return {
     getShipCoords,
     buildShip,
     ships,
+    sunkShips,
+    getMissedAttacks,
     allSunk,
     receiveAttack,
     initializeShipCoords,

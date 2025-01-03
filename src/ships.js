@@ -18,30 +18,24 @@ const ship = function (len) {
   const getLocations = function () {
     return locations;
   };
-  const setName = function (len) {
-    switch (len) {
-      case 5:
-        name = "Carrier";
-        break;
-      case 4:
-        name = "BattleShip";
-        break;
-      case 3:
-        name = "Submarine";
-        break;
-      case 2:
-        name = "Patrol Boat";
-        break;
-      default:
-        name = "ship";
-        break;
-    }
+
+  const shipRelations = {
+    5: "Carrier",
+    4: "BattleShip",
+    3: "Submarine",
+    2: "Patrol Boat",
   };
+
+  const setName = function (len) {
+    name = shipRelations[len];
+  };
+
   const getName = function () {
     setName();
     return name;
   };
   return {
+    shipRelations,
     getName,
     getLength,
     hit,

@@ -99,15 +99,23 @@ h2 {
   width: 50%;
   display: flex;
   place-content: center;
+  position: relative;
+  z-index: 5;
   padding: 2%;
   background-color: lawngreen;
 }
-#testBlock {
+#Carrier {
   height: 30px;
-  background-color: black;
   width: 30px;
+  background-color: black;
+  display: flex;
 }
 #shipContainer {
+  height: 200px;
+  width: 200px;
+}
+.ship {
+  z-index: 10;
 }
 .unit {
   background-color: white;
@@ -118,8 +126,10 @@ h2 {
 #playerBoard {
   background-color: red;
   display: grid;
-  height: 100%;
-  width: 81%;
+  height: 350px;
+  position: absolute;
+  width: 350px;
+  z-index: 4;
   padding: 1%;
   gap: 5px;
   grid-template-columns: repeat(10, 1fr);

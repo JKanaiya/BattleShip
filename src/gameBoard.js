@@ -1,6 +1,6 @@
-const ship = require("./ships");
+import { ship } from "./ships";
 
-const gameBoard = function () {
+const GameBoard = function () {
   let shipCoords = [];
   const ships = [];
   const sunkShips = [];
@@ -93,4 +93,4 @@ const gameBoard = function () {
   };
 };
 
-module.exports = gameBoard;
+export { GameBoard };

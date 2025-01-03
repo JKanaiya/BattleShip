@@ -1,7 +1,7 @@
-const Driver = require("./index");
+import { Driver } from "./index";
 
 const testDriver = Driver();
-// const testDriver2 = Driver();
+
 test("Attack Player", () => {
   expect(testDriver.attackPlayer([5, 6])).toBe("Hit");
   expect(testDriver.attackPlayer([3, 1])).toBe("Miss");

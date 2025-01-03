@@ -1,13 +1,19 @@
-const initPlayer = require("./player");
+import { Player } from "./player";
+import "./styles.css";
+import { DOMControl } from "./DomControl";
 
-const Driver = function () {
+const Driver = function (name) {
   let player;
-  const player1 = initPlayer("Random");
-  const AiPlayer = initPlayer("Ai");
-  // player1.gameBoard.initializeShipCoords();
-  // AiPlayer.gameBoard.initializeShipCoords();
-  player1.gameBoard.buildShip([5, 5], "y", 3);
-  AiPlayer.gameBoard.buildShip([5, 5], "y", 3);
+
+  if (!name) name = "Player";
+
+  const player1 = Player(name);
+  const AiPlayer = Player("Ai");
+
+  AiPlayer.gameBoard.initializeShipCoords();
+  player1.gameBoard.initializeShipCoords();
+  // player1.gameBoard.buildShip([5, 5], "y", 3);
+  // AiPlayer.gameBoard.buildShip([5, 5], "y", 3);
 
   const switchPlayer = function () {
     player == player1 ? (player = AiPlayer) : (player = player1);
@@ -28,4 +34,7 @@ const Driver = function () {
   };
 };
 
-module.exports = Driver;
+const DCon = DOMControl();
+DCon.populateBoard(DCon.playerBoard);
+
+export { Driver };

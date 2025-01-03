@@ -1,10 +1,11 @@
-const Board = require("./gameBoard");
-const player = function (name) {
-  const gameBoard = Board();
+import { GameBoard } from "./gameBoard";
+
+const Player = function (name) {
+  const gameBoard = GameBoard();
   return {
     name,
     gameBoard,
   };
 };
 
-module.exports = player;
+export { Player };

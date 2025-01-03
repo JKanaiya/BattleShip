@@ -51,4 +51,4 @@ const ship = function (len) {
   };
 };
 
-module.exports = ship;
+export { ship };

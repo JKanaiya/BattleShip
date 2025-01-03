@@ -1,0 +1,132 @@
+/*
+
+  Josh's Custom CSS Reset
+
+  https://www.joshwcomeau.com/css/custom-css-reset/
+
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  height: 100dvh;
+  padding: 3%;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+  place-items: center;
+  margin-bottom: 10px;
+}
+
+#gameArea {
+  background-color: maroon;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2%;
+  height: 90%;
+}
+#textArea {
+  height: 20%;
+  width: 90%;
+}
+#playArea {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  width: 100%;
+  column-gap: 10%;
+  padding: 2%;
+}
+#left {
+  height: 95%;
+  width: 50%;
+  display: flex;
+  place-content: center;
+  padding: 2%;
+  background-color: lawngreen;
+}
+#testBlock {
+  height: 30px;
+  background-color: black;
+  width: 30px;
+}
+#shipContainer {
+}
+.unit {
+  background-color: white;
+}
+.over {
+  border: 3px dotted #667;
+}
+#playerBoard {
+  background-color: red;
+  display: grid;
+  height: 100%;
+  width: 81%;
+  padding: 1%;
+  gap: 5px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+#right {
+  height: 95%;
+  width: 50%;
+  background-color: rebeccapurple;
+}

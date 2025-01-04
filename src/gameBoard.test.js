@@ -16,10 +16,9 @@ test("Build Ship 1 of Set Size", () => {
 
 test("Build Ship 2 of Set Size", () => {
   const testGB2 = GameBoard();
-  testGB2.buildShip([5, 6], "y", 3);
+  testGB2.buildShip([5, 6], "y", 2);
   expect(testGB2.getShipCoords()).toEqual(
     expect.arrayContaining([
-      [5, 7],
       [5, 6],
       [5, 5],
     ])

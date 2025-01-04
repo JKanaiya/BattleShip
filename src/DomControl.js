@@ -4,6 +4,15 @@ const DOMControl = function () {
   const computerBoard = document.querySelector("#computerboard");
 
   const ships = document.querySelectorAll(".ship");
+  const shipData = [];
+
+  const dataFormat = function (center, axis, length) {
+    return {
+      center,
+      axis,
+      length,
+    };
+  };
 
   ships.forEach((ship) => {
     ship.addEventListener("dragstart", () => {
@@ -50,7 +59,6 @@ const DOMControl = function () {
     let ct = 1;
     let n = 1;
     let sw = true;
-    console.log(center, len);
     while (n + 1 <= len) {
       if (sw == true) {
         document
@@ -76,6 +84,7 @@ const DOMControl = function () {
       toggleSquash(center, a.dataset.length);
       e.target.classList.add("span" + a.dataset.length);
       e.target.appendChild(a);
+      shipData.push(dataFormat(center, "x", Number(a.dataset.length)));
       a.setAttribute("draggable", "false");
     }
   };
@@ -101,7 +110,6 @@ const DOMControl = function () {
   const handleDrop = function (e) {
     e.preventDefault();
     const a = document.querySelector(".dragging");
-    console.log(a.dataset.length);
     this.classList.remove("over");
     if (!e.target.classList.contains("span" + a.dataset.length)) {
       dockShip(e, a);
@@ -120,12 +128,13 @@ const DOMControl = function () {
         unit = document.createElement("div");
         unit.classList.add("unit");
         unit.dataset.id = j + "," + i;
-        unit.addEventListener("dragenter", handleDragEnter);
-        unit.addEventListener("dragleave", handleDragLeave);
-        unit.addEventListener("dragend", handleDragEnd);
-        unit.addEventListener("drop", handleDrop);
-        unit.addEventListener("dragover", handleDragOver);
-
+        if (board == setupBoard) {
+          unit.addEventListener("dragenter", handleDragEnter);
+          unit.addEventListener("dragleave", handleDragLeave);
+          unit.addEventListener("dragend", handleDragEnd);
+          unit.addEventListener("drop", handleDrop);
+          unit.addEventListener("dragover", handleDragOver);
+        }
         board.appendChild(unit);
       }
     }
@@ -148,6 +157,7 @@ const DOMControl = function () {
   return {
     populateBoard,
     setupBoard,
+    shipData,
     toggleBlur,
     handleDragStart,
     handleDragEnd,

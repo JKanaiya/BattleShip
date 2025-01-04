@@ -4,7 +4,7 @@ const GameBoard = function () {
   let shipCoords = [];
   const ships = [];
   const sunkShips = [];
-  const missedAttacks = [];
+  const attacks = [];
   const buildShip = function (center, axis, length) {
     let sw = true;
     const temp = [];
@@ -14,10 +14,10 @@ const GameBoard = function () {
     if (axis === "y") {
       while (length > temp.length) {
         if (sw == true) {
-          temp.push([center[0], center[1] + ct]);
+          temp.push([center[0], center[1] - ct]);
           sw = false;
         } else {
-          temp.push([center[0], center[1] - ct]);
+          temp.push([center[0], center[1] + ct]);
           sw = true;
           ct++;
         }
@@ -25,10 +25,10 @@ const GameBoard = function () {
     } else {
       while (length > temp.length) {
         if (sw == true) {
-          temp.push([center[0] + ct, center[1]]);
+          temp.push([center[0] - ct, center[1]]);
           sw = false;
         } else {
-          temp.push([center[0] - ct, center[1]]);
+          temp.push([center[0] + ct, center[1]]);
           sw = true;
           ct++;
         }
@@ -36,7 +36,7 @@ const GameBoard = function () {
     }
     tempShip.setLocations(temp);
     ships.push(tempShip);
-    shipCoords = [...ships, ...temp];
+    shipCoords = [...shipCoords, ...temp];
   };
 
   const initializeShipCoords = function () {
@@ -45,7 +45,7 @@ const GameBoard = function () {
     buildShip([1, 0], "x", 3);
     buildShip([2, 3], "y", 2);
     buildShip([5, 1], "x", 2);
-    buildShip([5, 1], "x", 4);
+    buildShip([9, 1], "x", 4);
     buildShip([0, 6], "y", 4);
   };
 
@@ -54,22 +54,24 @@ const GameBoard = function () {
   };
 
   const receiveAttack = function (arr) {
-    let attempt = "Miss";
-    ships.forEach((ship) => {
-      ship.getLocations().forEach((coord) => {
-        if (coord[0] == arr[0] && coord[1] == arr[1]) {
-          attempt = "Hit";
-          ship.hit();
-          if (ship.isSunk()) {
-            ships.splice(ships.indexOf(ship), 1);
-            ship.getName();
-            sunkShips.push(ship);
+    if (arr) {
+      attacks.push(arr);
+      let attempt = "Miss";
+      ships.forEach((ship) => {
+        ship.getLocations().forEach((coord) => {
+          if (coord[0] == arr[0] && coord[1] == arr[1]) {
+            attempt = "Hit";
+            ship.hit();
+            if (ship.isSunk()) {
+              ships.splice(ships.indexOf(ship), 1);
+              ship.getName();
+              sunkShips.push(ship);
+            }
           }
-        }
+        });
       });
-    });
-    if (attempt == "Miss") missedAttacks.push(arr);
-    return attempt;
+      return attempt;
+    }
   };
 
   const allSunk = function () {
@@ -77,8 +79,8 @@ const GameBoard = function () {
     return false;
   };
 
-  const getMissedAttacks = function () {
-    return missedAttacks;
+  const getAttacks = function () {
+    return attacks;
   };
 
   return {
@@ -86,7 +88,7 @@ const GameBoard = function () {
     buildShip,
     ships,
     sunkShips,
-    getMissedAttacks,
+    getAttacks,
     allSunk,
     receiveAttack,
     initializeShipCoords,

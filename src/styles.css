@@ -104,6 +104,17 @@ h2 {
   padding: 2%;
   background-color: lawngreen;
 }
+.board {
+  background-color: red;
+  display: grid;
+  height: 350px;
+  width: 350px;
+  padding: 1%;
+  grid-auto-flow: unset;
+  gap: 5px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
 #BattleShip {
   height: 30px;
   width: 150px;
@@ -135,7 +146,7 @@ h2 {
 #setupWindow {
   padding: 2%;
   z-index: 50;
-  display: flex;
+  display: none;
   flex-direction: column;
   height: 80dvh;
   width: 70%;
@@ -261,5 +272,9 @@ h2 {
 #right {
   height: 95%;
   width: 50%;
+  display: flex;
+  place-content: center;
+  padding: 2%;
+  justify-content: center;
   background-color: rebeccapurple;
 }

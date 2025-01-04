@@ -35,7 +35,7 @@ const ship = function (len) {
     return name;
   };
   return {
-    shipRelations,
+    // shipRelations,
     getName,
     getLength,
     hit,

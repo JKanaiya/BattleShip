@@ -1,12 +1,9 @@
-import { ship } from "./ships";
-
 const DOMControl = function () {
-  const playerBoard = document.querySelector("#playerBoard");
+  const setupBoard = document.querySelector("#setupBoard");
+  const gameArea = document.querySelector("#gameArea");
   const computerBoard = document.querySelector("#computerboard");
 
   const ships = document.querySelectorAll(".ship");
-
-  const random = ship();
 
   ships.forEach((ship) => {
     ship.addEventListener("dragstart", () => {
@@ -21,30 +18,24 @@ const DOMControl = function () {
     let sw = true;
     let available = true;
     for (let ct = 1; length > ct * 2; ct++) {
-      console.log(ct);
       if (arr[0] - ct < 0 || arr[0] + ct >= 10) {
         available = false;
       }
       if (available == true) {
-        // console.log(
-        //   document.querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
-        // );
         if (sw == true) {
           if (
-            document.querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
-              .style.backgroundColor != "white" &&
-            document.querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
-              .style.backgroundColor != null
+            document
+              .querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
+              .classList.contains("span")
           ) {
             available = false;
           }
           sw = false;
         } else {
           if (
-            document.querySelector(`[data-id = "${arr[0] - ct},${arr[1]}"]`)
-              .style.backgroundColor != "white" &&
-            document.querySelector(`[data-id = "${arr[0] - ct},${arr[1]}"]`)
-              .style.backgroundColor != null
+            document
+              .querySelector(`[data-id = "${arr[0] - ct},${arr[1]}"]`)
+              .classList.contains("span")
           ) {
             available = false;
           }
@@ -55,36 +46,41 @@ const DOMControl = function () {
     return available;
   };
 
-  const colLength = function (center, len) {
+  const toggleSquash = function (center, len) {
+    let ct = 1;
+    let n = 1;
     let sw = true;
-    for (let ct = 1; len > ct * 2; ct++) {
+    console.log(center, len);
+    while (n + 1 <= len) {
       if (sw == true) {
-        document.querySelector(
-          `.${center[0] - ct}, ${center[1]}`
-        ).style.backgroundColor = "black";
+        document
+          .querySelector(`[data-id = "${center[0] - ct},${center[1]}"]`)
+          .classList.toggle("squash");
+        n++;
         sw = false;
       } else {
-        document.querySelector(
-          `.${center[0] + ct}, ${center[1]}`
-        ).style.backgroundColor = "black";
+        document
+          .querySelector(`[data-id = "${center[0] + ct},${center[1]}"]`)
+          .classList.toggle("squash");
+        n++;
         sw = true;
+        ct++;
       }
     }
   };
 
-  const displayLength = function (e, a) {
+  const dockShip = function (e, a) {
     const n = e.target.dataset.id.split(",");
     const center = n.map((n) => Number(n));
-    const len = Object.keys(random.shipRelations)[
-      Object.values(random.shipRelations).indexOf(a.id)
-    ];
-    console.log(checkFits(center, len));
-    if (checkFits(center, len)) {
-      colLength(center, len);
+    if (checkFits(center, a.dataset.length)) {
+      toggleSquash(center, a.dataset.length);
+      e.target.classList.add("span" + a.dataset.length);
+      e.target.appendChild(a);
+      a.setAttribute("draggable", "false");
     }
   };
 
-  const handleDragStart = function () {
+  const handleDragStart = function (e) {
     this.style.opacity = "0.4";
   };
 
@@ -97,21 +93,24 @@ const DOMControl = function () {
     this.classList.add("over");
   };
 
-  const handleDragLeave = function () {
+  const handleDragLeave = function (e) {
+    e.preventDefault();
     this.classList.remove("over");
   };
 
   const handleDrop = function (e) {
     e.preventDefault();
-    e.stopPropagation();
     const a = document.querySelector(".dragging");
-    if (a && e.target.classList.contains("unit")) {
-      e.target.appendChild(a);
-      displayLength(e, a);
-    }
-
+    console.log(a.dataset.length);
     this.classList.remove("over");
-    // return false;
+    if (!e.target.classList.contains("span" + a.dataset.length)) {
+      dockShip(e, a);
+    }
+  };
+
+  const handleDragOver = function (e) {
+    e.stopPropagation();
+    e.preventDefault();
   };
 
   const populateBoard = function (board) {
@@ -123,15 +122,33 @@ const DOMControl = function () {
         unit.dataset.id = j + "," + i;
         unit.addEventListener("dragenter", handleDragEnter);
         unit.addEventListener("dragleave", handleDragLeave);
-        unit.addEventListener("dragover", handleDrop);
+        unit.addEventListener("dragend", handleDragEnd);
+        unit.addEventListener("drop", handleDrop);
+        unit.addEventListener("dragover", handleDragOver);
+
         board.appendChild(unit);
       }
     }
   };
 
+  const toggleBlur = function (target) {
+    target.classList.toggle("blur");
+  };
+
+  const toggleSetupBoard = function (a) {
+    if (a.style.display == "flex") {
+      hideDetails(a);
+      toggleBlur(gameArea);
+    } else {
+      displayDetails(a);
+      toggleBlur(gameArea);
+    }
+  };
+
   return {
     populateBoard,
-    playerBoard,
+    setupBoard,
+    toggleBlur,
     handleDragStart,
     handleDragEnd,
     computerBoard,

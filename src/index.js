@@ -35,6 +35,6 @@ const Driver = function (name) {
 };
 
 const DCon = DOMControl();
-DCon.populateBoard(DCon.playerBoard);
+DCon.populateBoard(DCon.setupBoard);
 
 export { Driver };

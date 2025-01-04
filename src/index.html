@@ -10,18 +10,64 @@
     <div id="gameArea">
       <h2 id="textArea">Random Text Here</h2>
       <div id="playArea">
-        <div id="shipContainer">
-          <div id="testBlockB" class="ship" draggable="true"></div>
-
-          <div id="testBlockC" class="ship" draggable="true"></div>
-          <div id="Carrier" class="ship" draggable="true"></div>
-        </div>
         <div id="left">
           <div id="playerBoard"></div>
         </div>
         <div id="right">
           <div id="computerBoard"></div>
         </div>
+      </div>
+    </div>
+    <div id="introWindow">
+      <h2>What should we call you, Commander?</h2>
+      <input id="name" type="text" placeholder="Commander" />
+      <div id="startGame">Start Game</div>
+    </div>
+    <div id="setupWindow">
+      <h1>Place your ships, Commander</h1>
+      <div id="interact">
+        <div id="shipContainer">
+          <div id="Carrier" class="ship" draggable="true" data-length="5"></div>
+          <div
+            id="BattleShip"
+            class="ship"
+            draggable="true"
+            data-length="4"
+          ></div>
+          <div
+            id="BattleShip"
+            class="ship"
+            draggable="true"
+            data-length="4"
+          ></div>
+          <div
+            id="Submarine"
+            class="ship"
+            draggable="true"
+            data-length="3"
+          ></div>
+          <div
+            id="Submarine"
+            class="ship"
+            draggable="true"
+            data-length="3"
+          ></div>
+          <div
+            id="PatrolBoat"
+            class="ship"
+            draggable="true"
+            data-length="2"
+          ></div>
+          <div
+            id="PatrolBoat"
+            class="ship"
+            draggable="true"
+            data-length="2"
+          ></div>
+          <div id="reset">Reset</div>
+        </div>
+        <div id="setupBoard"></div>
+        <div id="done">Done</div>
       </div>
     </div>
   </body>

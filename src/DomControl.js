@@ -2,6 +2,7 @@ const DOMControl = function () {
   const setupBoard = document.querySelector("#setupBoard");
   const gameArea = document.querySelector("#gameArea");
   const computerBoard = document.querySelector("#computerboard");
+  const shipContainer = document.querySelector("#shipContainer");
 
   const ships = document.querySelectorAll(".ship");
   const shipData = [];
@@ -89,7 +90,15 @@ const DOMControl = function () {
     }
   };
 
-  const handleDragStart = function (e) {
+  const hideDetails = function (target) {
+    target.style.display = "none";
+  };
+
+  const displayDetails = function (target) {
+    target.style.display = "flex";
+  };
+
+  const handleDragStart = function () {
     this.style.opacity = "0.4";
   };
 
@@ -144,8 +153,8 @@ const DOMControl = function () {
     target.classList.toggle("blur");
   };
 
-  const toggleSetupBoard = function (a) {
-    if (a.style.display == "flex") {
+  const toggleFocus = function (a) {
+    if (window.getComputedStyle(a).display == "flex") {
       hideDetails(a);
       toggleBlur(gameArea);
     } else {
@@ -154,6 +163,14 @@ const DOMControl = function () {
     }
   };
 
+  const resetSetup = function () {
+    ships.forEach((ship) => {
+      ship.setAttribute("draggable", "true");
+      shipContainer.appendChild(ship);
+    });
+    setupBoard.innerHTML = "";
+    populateBoard(setupBoard);
+  };
   return {
     populateBoard,
     setupBoard,
@@ -161,6 +178,8 @@ const DOMControl = function () {
     toggleBlur,
     handleDragStart,
     handleDragEnd,
+    resetSetup,
+    toggleFocus,
     computerBoard,
   };
 };

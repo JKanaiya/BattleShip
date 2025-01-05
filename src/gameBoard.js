@@ -39,13 +39,17 @@ const GameBoard = function () {
     shipCoords = [...shipCoords, ...temp];
   };
 
+  const resetBoard = function () {
+    shipCoords = [];
+  };
+
   const initializeShipCoords = function () {
     buildShip([4, 9], "x", 5);
     buildShip([5, 6], "y", 3);
     buildShip([1, 0], "x", 3);
     buildShip([2, 3], "y", 2);
     buildShip([5, 1], "x", 2);
-    buildShip([9, 1], "x", 4);
+    buildShip([8, 1], "x", 3);
     buildShip([0, 6], "y", 4);
   };
 
@@ -75,8 +79,7 @@ const GameBoard = function () {
   };
 
   const allSunk = function () {
-    if (ships.length == 0) return true;
-    return false;
+    return ships.length == 0;
   };
 
   const getAttacks = function () {
@@ -86,10 +89,10 @@ const GameBoard = function () {
   return {
     getShipCoords,
     buildShip,
-    ships,
     sunkShips,
     getAttacks,
     allSunk,
+    resetBoard,
     receiveAttack,
     initializeShipCoords,
   };

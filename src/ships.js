@@ -26,8 +26,8 @@ const ship = function (len) {
     2: "Patrol Boat",
   };
 
-  const setName = function (len) {
-    name = shipRelations[len];
+  const setName = function () {
+    name = shipRelations[String(length)];
   };
 
   const getName = function () {
@@ -39,6 +39,7 @@ const ship = function (len) {
     getName,
     getLength,
     hit,
+    locations,
     getLocations,
     isSunk,
     setLocations,

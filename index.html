@@ -6,15 +6,75 @@
     <title>BattleShips</title>
   <script defer src="main.js"></script></head>
   <body>
-    <h1 id="BattleShips!"></h1>
-    <div id="gameArea">
-      <div id="textArea"></div>
-      <div id="left">
-        <div id="shipContainer"></div>
-        <div id="playerBoard"></div>
+    <h1>BattleShips!</h1>
+    <h2 id="textArea"></h2>
+    <div id="gameArea" class="blur">
+      <div id="playArea">
+        <div id="left">
+          <h2>Your Board</h2>
+          <div id="playerBoard" class="board"></div>
+        </div>
+        <div id="right">
+          <h2>Ai Board</h2>
+          <div id="computerBoard" class="board"></div>
+        </div>
       </div>
-      <div id="right">
-        <div id="computerBoard"></div>
+    </div>
+    <div id="introWindow">
+      <h2>What should we call you, Commander?</h2>
+      <input id="name" type="text" placeholder="Commander" />
+      <div id="startGame">Start Game</div>
+    </div>
+    <div id="retryWindow">
+      <h2>Would you like to play again?</h2>
+      <div id="yes" class="button">Yes</div>
+      <div id="no" class="button">No</div>
+    </div>
+    <div id="setupWindow">
+      <h1>Place your ships, Commander</h1>
+      <div id="interact">
+        <div id="shipContainer">
+          <div id="Carrier" class="ship" draggable="true" data-length="5"></div>
+          <div
+            id="BattleShip"
+            class="ship"
+            draggable="true"
+            data-length="4"
+          ></div>
+          <div
+            id="BattleShip"
+            class="ship"
+            draggable="true"
+            data-length="4"
+          ></div>
+          <div
+            id="Submarine"
+            class="ship"
+            draggable="true"
+            data-length="3"
+          ></div>
+          <div
+            id="Submarine"
+            class="ship"
+            draggable="true"
+            data-length="3"
+          ></div>
+          <div
+            id="PatrolBoat"
+            class="ship"
+            draggable="true"
+            data-length="2"
+          ></div>
+          <div
+            id="PatrolBoat"
+            class="ship"
+            draggable="true"
+            data-length="2"
+          ></div>
+          <div id="reset">Reset</div>
+        </div>
+        <div id="setupBoard"></div>
+        <div id="done">Done</div>
       </div>
     </div>
   </body>

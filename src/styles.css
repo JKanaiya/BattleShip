@@ -56,6 +56,7 @@ h6 {
 body {
   height: 100dvh;
   padding: 3%;
+  background-color: #8aa39b;
 }
 
 h1 {
@@ -73,7 +74,7 @@ h2 {
 }
 
 #gameArea {
-  background-color: maroon;
+  background-color: #042b09;
   display: flex;
   place-items: center;
   justify-content: center;
@@ -82,7 +83,11 @@ h2 {
   height: 90%;
 }
 #textArea {
-  height: 20%;
+  height: 10%;
+  position: absolute;
+  top: 13%;
+  z-index: 100;
+  color: #8aa39b;
   width: 90%;
 }
 #playArea {
@@ -96,16 +101,17 @@ h2 {
 }
 #left {
   height: 95%;
+  color: #8aa39b;
   width: 50%;
   display: flex;
+  flex-direction: column;
   place-content: center;
   position: relative;
-  /* z-index: 5; */
   padding: 2%;
-  background-color: lawngreen;
 }
 .board {
-  background-color: red;
+  background-color: #042b09;
+  place-self: center;
   display: grid;
   height: 350px;
   width: 350px;
@@ -119,14 +125,14 @@ h2 {
   height: 30px;
   width: 150px;
   z-index: 10;
-  background-color: blue;
+  background-color: #a4f9c8;
   display: flex;
 }
 #Carrier {
   height: 30px;
   width: 200px;
   z-index: 10;
-  background-color: black;
+  background-color: #95d9c3;
   display: flex;
 }
 #Submarine {
@@ -140,19 +146,20 @@ h2 {
   height: 30px;
   width: 75px;
   z-index: 10;
-  background-color: aqua;
+  background-color: #a7fff6;
   display: flex;
 }
 #setupWindow {
   padding: 2%;
+  background-color: #2b4162;
   z-index: 50;
   display: none;
   flex-direction: column;
   height: 80dvh;
   width: 70%;
   row-gap: 5%;
-  background-color: gray;
   position: absolute;
+  color: #8aa39b;
   top: 10%;
   left: 15%;
 }
@@ -164,7 +171,9 @@ h2 {
   left: 25%;
   padding: 5%;
   place-content: center;
-  background-color: aqua;
+  background-color: #2b4162;
+  color: #8aa39b;
+  font-size: 1.3rem;
   display: flex;
   text-align: center;
   row-gap: 100px;
@@ -175,10 +184,13 @@ h2 {
   place-content: center;
   justify-content: center;
   cursor: pointer;
+  padding: 5%;
+  font-size: 1.2rem;
+  background-color: #a4f9c8;
   place-self: center;
   border-radius: 5px;
-  width: 25%;
-  background-color: blueviolet;
+  width: 35%;
+  font-weight: 900;
 }
 
 #reset {
@@ -190,6 +202,8 @@ h2 {
   background-color: turquoise;
   width: 100px;
   height: 40px;
+  font-weight: 900;
+  color: #2b4162;
   place-content: center;
   text-align: center;
 }
@@ -202,6 +216,8 @@ h2 {
 #done {
   cursor: pointer;
   position: absolute;
+  font-weight: 900;
+  color: #2b4162;
   bottom: 5%;
   place-self: center;
   border-radius: 5px;
@@ -219,8 +235,9 @@ h2 {
   left: 25%;
   padding: 5%;
   place-content: center;
-  background-color: gray;
+  background-color: #2b4162;
   display: none;
+  color: #8aa39b;
   text-align: center;
   row-gap: 100px;
   flex-direction: column;
@@ -236,14 +253,16 @@ h2 {
 }
 #no {
   position: absolute;
+  font-weight: 900;
   left: 15%;
-  background-color: red;
+  background-color: #721817;
   bottom: 10%;
 }
 #yes {
   position: absolute;
+  font-weight: 900;
   right: 15%;
-  background-color: green;
+  background-color: #a4f9c8;
   bottom: 10%;
 }
 #shipContainer {
@@ -297,7 +316,7 @@ h2 {
 }
 
 #setupBoard {
-  background-color: red;
+  background-color: #042b09;
   display: grid;
   height: 350px;
   width: 350px;
@@ -309,10 +328,12 @@ h2 {
 }
 #right {
   height: 95%;
+  flex-direction: column;
+  text-align: center;
+  color: #8aa39b;
   width: 50%;
   display: flex;
   place-content: center;
   padding: 2%;
   justify-content: center;
-  background-color: rebeccapurple;
 }

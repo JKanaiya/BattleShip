@@ -35,7 +35,7 @@ const DOMControl = function () {
         if (sw == true) {
           if (
             document
-              .querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
+              .querySelector(`[data-id = "${arr[0] - ct},${arr[1]}"]`)
               .classList.contains("span")
           ) {
             available = false;
@@ -44,7 +44,7 @@ const DOMControl = function () {
         } else {
           if (
             document
-              .querySelector(`[data-id = "${arr[0] - ct},${arr[1]}"]`)
+              .querySelector(`[data-id = "${arr[0] + ct},${arr[1]}"]`)
               .classList.contains("span")
           ) {
             available = false;
@@ -63,13 +63,13 @@ const DOMControl = function () {
     while (n + 1 <= len) {
       if (sw == true) {
         document
-          .querySelector(`[data-id = "${center[0] - ct},${center[1]}"]`)
+          .querySelector(`[data-id = "${center[0] + ct},${center[1]}"]`)
           .classList.toggle("squash");
         n++;
         sw = false;
       } else {
         document
-          .querySelector(`[data-id = "${center[0] + ct},${center[1]}"]`)
+          .querySelector(`[data-id = "${center[0] - ct},${center[1]}"]`)
           .classList.toggle("squash");
         n++;
         sw = true;

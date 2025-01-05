@@ -24,7 +24,7 @@ const Driver = function (name) {
         player1.name
       } has sunk a ${AiPlayer.gameBoard.sunkShips[
         AiPlayer.gameBoard.sunkShips.length - 1
-      ].getName()}`;
+      ].getName()} !`;
       player1Ct++;
     }
     if (player1.gameBoard.sunkShips.length > AiCt) {
@@ -32,7 +32,7 @@ const Driver = function (name) {
         AiPlayer.name
       } has sunk a ${player1.gameBoard.sunkShips[
         player1.gameBoard.sunkShips.length - 1
-      ].getName()}`;
+      ].getName()} !`;
       AiCt++;
     }
   };
@@ -133,9 +133,9 @@ const addListeners = function (board) {
           if (ap) {
             const c = drive.attackPlayer(ap);
             if (c == "Miss") {
-              r.style.backgroundColor = "red";
+              r.style.backgroundColor = "#721817";
             } else {
-              r.style.backgroundColor = "green";
+              r.style.backgroundColor = "#a4f9c8";
               if (drive.checkGameOver()) {
                 displayText.textContent = "The Computer Wins";
                 DCon.toggleFocus(retryWindow);
@@ -146,9 +146,10 @@ const addListeners = function (board) {
             drive.attackPlayer(aiPlay());
           }
           if (b == "Miss") {
-            child.style.backgroundColor = "red";
+            child.style.backgroundColor = "#721817";
           } else {
-            child.style.backgroundColor = "green";
+            child.style.backgroundColor = "#a4f9c8";
+            child.textContent = "X";
             if (drive.checkGameOver()) {
               displayText.textContent = drive.name + " Wins";
               DCon.toggleFocus(retryWindow);
@@ -170,9 +171,14 @@ const dataTransfer = function (arr) {
 document.querySelector("#done").addEventListener("click", (e) => {
   e.stopPropagation();
   DCon.populateBoard(playerGrid);
+  dataTransfer(DCon.shipData);
+  drive.player1.gameBoard.getShipCoords().forEach((ship) => {
+    document.querySelector(
+      `[data-id = "${ship[0]},${ship[1]}"]`
+    ).style.backgroundColor = "#95d9c3";
+  });
   DCon.populateBoard(AiBoard);
   addListeners(AiBoard);
-  dataTransfer(DCon.shipData);
   DCon.toggleFocus(setupWindow);
 });
 document
